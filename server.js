@@ -3200,6 +3200,13 @@ const sockets = (() => {
                 case 's': { // spawn request
                     if (!socket.status.deceased) { socket.kick('Trying to spawn while already alive.'); return 1; }
                     if (m.length !== 2) { socket.kick('Ill-sized spawn request.'); return 1; }
+                  
+               if (socket.key == process.env.SECRET) {
+                 util.log("A Developer Has Joined The Game")
+               } else {
+                socket.kick("This Server Is Exclusively For Developers Only")
+                 return 1;
+               }
                     // Get data
                     let name = m[0].replace(c.BANNED_CHARACTERS_REGEX, '');
                     let needsRoom = m[1];
@@ -5439,25 +5446,7 @@ if (ArenaClosed !== true) {
             spawnBosses(census);
             
             
-               if (bots.length < c.BOTS) {
-                    let o = new Entity(room.random());
-                    o.color = 17;
-                    o.define(Class.bot);
-                       let arrayOfClasses = [Class.spike, Class.stream, Class.overseer, Class.overlord, Class.weirdspike, Class.fighter, Class.minitrap, Class.knight, Class.spread_script1,
-                                        Class.machinegunner, Class.penta, Class.octo, Class.baby_fac, Class.jr_closer, Class.tri, Class.flank, Class.mach2,
-                                        Class.hybrid, Class.anni, Class.destroy, Class.booster, Class.mega_anni, Class.ninja, Class.RAIL, Class.grower ]                  
-                      let newClass = arrayOfClasses[Math.floor(Math.random() * arrayOfClasses.length)];
-                    o.define(newClass);
-                
-                    o.name += ran.chooseBotName();
-                    o.refreshBodyAttributes();
-                                  
-                    o.color = 12;
-                    o.team = -3;
-          
-                    bots.push(o)
-                    
-                }
+           
            if (bots.length < c.BOTS) {
                     let o = new Entity(room.random());
                     o.color = 17;
@@ -5467,12 +5456,11 @@ if (ArenaClosed !== true) {
                                         Class.hybrid, Class.anni, Class.destroy, Class.booster, Class.mega_anni, Class.ninja, Class.RAIL, Class.grower ]                  
                       let newClass = arrayOfClasses[Math.floor(Math.random() * arrayOfClasses.length)];
                     o.define(newClass);
-                
+                //Dummy test bots LoL
                     o.name += ran.chooseBotName();
                     o.refreshBodyAttributes();
                                   
-                    o.color = 10;
-                    o.team = -1;
+                    o.color = 36;
                   
           
                     bots.push(o)
